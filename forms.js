@@ -28,16 +28,16 @@ const validate =()=>{
     const pass = document.getElementById('pass');
     const errorMessage = document.getElementById('error-message');
     if(user.value == ''){
-        errorMessage.innerHTML = 'Username cannot be left blank';
+        errorMessage.innerHTML = '<i>Username cannot be left blank</i>';
         user.focus();
     }else if(pass.value == ''){
-        errorMessage.innerHTML = 'Password cannot be left blank';
+        errorMessage.innerHTML = '<i>Password cannot be left blank</i>';
         pass.focus();
     }else{
         //errorMessage.innerHTML = '';
     }
     if(!isNaN(user.value)){
-        errorMessage.innerHTML = 'Invalid Username, please choose a valid one';
+        errorMessage.innerHTML = '<i>Invalid Username, please choose a valid one</i>';
         user.value = ''; // clear the textbox
         user.focus();    
     }else{
