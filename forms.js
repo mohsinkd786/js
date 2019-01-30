@@ -21,7 +21,28 @@ const saveUserDetails =()=>{
     const userName = document.getElementById('user').value;
     const password = document.getElementById('pass').value;
     console.log(`User : ${userName} , Password : ${password} `);
-    
+}
+const validate =()=>{
+    //console.log('Validate Called');
+    const user = document.getElementById('user');
+    const pass = document.getElementById('pass');
+    const errorMessage = document.getElementById('error-message');
+    if(user.value == ''){
+        errorMessage.innerHTML = 'Username cannot be left blank';
+        user.focus();
+    }else if(pass.value == ''){
+        errorMessage.innerHTML = 'Password cannot be left blank';
+        pass.focus();
+    }else{
+        //errorMessage.innerHTML = '';
+    }
+    if(!isNaN(user.value)){
+        errorMessage.innerHTML = 'Invalid Username, please choose a valid one';
+        user.value = ''; // clear the textbox
+        user.focus();    
+    }else{
+        //errorMessage.innerHTML = '';
+    }
 }
 // square(10);
 // save();
