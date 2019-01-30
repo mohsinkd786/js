@@ -1,0 +1,139 @@
+<html>
+    <head>
+        <script type="text/javascript">
+        //alert('Hello Javascript');
+        // declaring variables
+        /*
+        */
+        var msg = 'Hello Javascript';
+        // ecma style variable declaration
+        let data = 12 + 2;
+        const pi = 3.14;
+        document.write('pi is ',pi);
+        // go to next line
+        document.write('<br/>');
+        // incorrect
+        // pi = 22;
+        document.write(msg);
+        // go to next line
+        document.write('<br/>');
+        msg = 10;
+        document.write(10);
+        // go to next line
+        document.write('<br/>');
+        document.write(`Data is ${data}`);
+        
+        // write to console
+        console.log('Just checking the logs');    
+        // add two numbers
+        let x = 10;
+        let y = 10;
+        // add 
+        console.log(x+y);
+        console.log(x-y);
+        console.log(`Product is ${x*y}`);
+        
+        // conditional statements
+        if(x >= y){
+            console.log('x is greater');
+        }else if(y > x){
+            console.log('y is greater');
+        }
+        /*else if(x == y){
+            console.log('x & y are equal');
+        }*/
+        let i = 20;
+        let j = 3;
+        // get the remainder
+        let remainder = i % j;
+        console.log(remainder);
+        let quotient = i / j;
+        console.log(quotient);
+        // specify the switch condition
+        const condition = 5;
+        // switch cases
+        switch(condition){
+            case 1: // when condition = 1
+            console.log('Case 1');
+            break;
+
+            case 2: // when condition = 2
+            console.log('Case 2');
+            
+            default: // incase none are met
+            console.log('Default ');
+        }
+        const browser = 'IE10'
+        switch(browser){
+            case 'Firefox':
+            console.log('Firefox');
+            break;
+            case 'Chrome':
+            console.log('Chrome');
+            break;
+            case 'Safari':
+            console.log('Safari');
+            break;
+            case 'IE':
+            case 'IE9':
+            case 'IE10':
+            console.log('IE');
+            break;
+            default:
+            console.log('Not supported'); 
+        }
+
+        // loops
+        // for loop
+        // while loop
+        // do while loop
+        // for in loop
+        //for(initialization,condition,expression)
+        for(counter=0;counter<5;counter++){
+            console.log(`Counter is ${counter}`);
+        }
+        // while loop
+        // initialization happens here
+        // while(condition){
+            // expression
+        // }
+        counter = 0;
+        while(counter < 5){
+            console.log(`While loop ${counter}`);
+            counter = counter + 2;
+        }
+        counter = 1;
+        // do while
+        do{
+            console.log(`Do while loop ${counter}`);
+            counter = counter + 2;
+        }while(counter < 1);
+
+        // conditional exits
+        // continue
+        for(counter = 5;counter >0;counter--){
+            if(counter % 2 == 0){
+                continue;
+            }
+            console.log(`For loop decrement continue ${counter} `);
+        }
+        // break
+        for(counter = 0;counter<5;counter++){
+            if(counter == 4){
+                break;
+            }
+            console.log(`For loop Break ${counter}`);
+        }
+        </script>
+        
+        <title>
+            Hello, Welcome to Javascript
+        </title>
+        <h1>Welcome to Javascript</h1>
+    </head>
+    <body>
+        <div>
+            Hello Welcome to Javascript
+        </div>
+    </body>
+</html>
