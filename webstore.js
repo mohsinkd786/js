@@ -13,7 +13,7 @@ const saveSessionData = () =>{
 }
 
 // get data from session data
-const getSessionData = () =>{
+const getSessionStoreData = () =>{
     const sessionBox = document.getElementById('session-store-data');
     // set the session store data in textbox
     sessionBox.value = sessionStorage.getItem('sessionMsg');
@@ -35,8 +35,20 @@ const deleteWebStoreData = ()=>{
     // delete the msg from local storage
     localStorage.removeItem('msg'); 
 }
+// delete the msg from web store
+const deleteSessionStoreData = ()=>{
+    const data = document.getElementById('session-store-data');
+    data.value ='';
+    // delete the msg from local storage
+    localStorage.removeItem('sessionMsg'); 
+}
 // just resetting the fields
 const resetField= ()=>{
     const data = document.getElementById('local-store-data');
+    data.value ='';
+}
+// just resetting the fields
+const resetSessionField= ()=>{
+    const data = document.getElementById('session-store-data');
     data.value ='';
 }
