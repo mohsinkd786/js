@@ -1,0 +1,9 @@
+div.city{
+    border: 1px double grey;
+    margin: 10 5 0 10px;
+    width: 20%;
+}
+div.city input[type=text]{
+    border: 1px solid black;
+    width: 100%;
+}
