@@ -1,5 +1,5 @@
 const calculate = () =>{
-    console.log(`calculate() called`);
+    //console.log(`calculate() called`);
     const first = parseInt(document.getElementById('first').value);
     const next = parseInt(document.getElementById('next').value);
     const operand = document.getElementById('operand').value;
@@ -8,7 +8,9 @@ const calculate = () =>{
         
     switch(operand){
         case 'add':
-        result = `Sum is  , ${calculator.add(first,next)}`;
+        //result = `Sum is  , ${calculator.add(first,next)}`;
+        // making static method calls
+        result = `Sum is , ${StaticCalculator.add(first,next)}`;
         break;
         
         case 'diff':
@@ -19,6 +21,11 @@ const calculate = () =>{
         result = `Product is , ${calculator.multiply(first,next)}`;
         break;
         
+        case 'div':
+        let esCal = new ESCalculator();
+        result = `Division is , ${esCal.division(first,next)}`;
+        break;
+
         default:
         result = 0;
     }
@@ -40,5 +47,18 @@ class Calculator{
     //product
     multiply(first,next){
         return first * next;
+    }
+}
+//
+class StaticCalculator{
+    static add(first,next){
+        return first + next;
+    }
+}
+
+// ES6 style
+const ESCalculator = class {
+    division(first,next){
+        return first / next;
     }
 }
