@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>
+            Sample Calculator | Js
+        </title>
+        <script src="calculate.js" type="text/javascript"></script>
+    </head>
+<body>
+<div id='message'>
+    <div>
+        <input type='number' min='0' max='100' id='first' required/>
+        <input type='number' min="0" max='100' id='next' required/>
+        <select id='operand' required>
+            <option value="none">--select--</option>
+            <option value="add">
+                Add
+            </option>
+            <option value="diff">
+                Subtract
+            </option>
+            <option value="mul">
+                Multiply
+            </option>
+        </select>
+        <input type="button" value='Calculate' onclick="calculate()"/>
+    </div>
+</div>
+<div id='result'>
+
+</div>
+</body>
+</html>
+<style type="text/css">
+
+input[type=text],input[type=number]{
+    width: 7%
+}
+#result{
+    font-style: italic;
+    font-weight: bold;
+    margin-left: 5px;
+}
+</style>
