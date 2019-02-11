@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <title>Async Test</title>
+    <script type='text/javascript'>
+    const message = async ()=>{
+        setTimeout(()=>{
+            for(i=0;i<100;i++){
+                console.log('Hello ',i);
+            }
+        },2000);
+    }
+    const trigger =async ()=>{
+        // setTimeout(2000);
+        // return 'Hi';
+        return new Promise((resolve,reject)=>{
+            setTimeout(2000)
+        }).then((resolve)=>{
+            console.log('Success');
+            resolve('success');
+        }).catch((reject)=>{
+            reject('failure');
+            console.log('Error ',reject);
+        })
+    }
+    const validate =async ()=>{
+        console.log('validate');
+        const response =await trigger();
+        console.log(response);
+        console.log('Finished');
+
+    }
+    const test = async ()=>{
+        //message();
+        setTimeout(()=>{
+            for(i=0;i<50;i++){
+                console.log('Test ',i);
+            }
+        },500);
+        // console.log('Hi .....');
+    }
+
+    //test();
+
+    </script>
+    </head>
+
+    <body>
+        <input type="button" value='save' onclick="validate()"/>
+    </body>
+</html>

@@ -1,0 +1,24 @@
+<html>
+    <head>
+        <title>Async Wait Fetch | Js</title>
+        <script type="text/javascript">
+        const asyncGetUsers = async ()=>{
+            console.log('asyncGetUsers()');
+            const url = 'https://jsonplaceholder.typicode.com/users';
+            let response = await fetch(url);
+            let users =await response.json();
+            users = users.map(user=>{
+                return ' => '+user.username +', '+user.email
+            });
+            console.log(users);
+            console.log('Finished');
+        }
+        asyncGetUsers();
+        </script>
+    </head>
+    <body>
+        <div id='data'>
+            
+        </div>
+    </body>
+</html>

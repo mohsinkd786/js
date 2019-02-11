@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title>Promise Sample | Js</title>
+        <script type="text/javascript">
+        const promise = new Promise((resolve,reject)=>{
+            setTimeout(()=>{
+                resolve('Hello Promise');
+                //reject('Oops It failed');
+            },100);
+        }).then((result)=>{
+            console.log(result);
+        }).catch((error)=>{
+            console.log(`Error : ${error}`);
+        });
+        console.log(promise);
+        </script>
+    </head>
+    <body>
+
+    </body>
+</html>
