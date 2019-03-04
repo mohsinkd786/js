@@ -289,14 +289,19 @@ cObj.calculate(10,1)
 
 // 
 const testAsync =async ()=>{
-    return new Promise()
-    .then((resolve)=>{
-        return resolve('Hello test async')
-    }).catch((err)=>{})
+   return fetch('https://jsonplaceholder.typicode.com/posts')
 }
-const callerTest =async ()=>{ 
-    let _msg = await testAsync()
-    console.log(_msg)
+const callerTest =()=>{ 
+    testAsync()
+    .then(res => res.json())
+    .then((data)=>{
+        let posts = []
+        posts = data.slice(0,10)
+        console.log(posts)
+    })
+    .catch(err=>{
+        console.error(err)
+    })
 }
 callerTest()
 
