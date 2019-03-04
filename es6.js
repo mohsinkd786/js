@@ -1,3 +1,4 @@
+'use strict'
 let textData = [
             [
                 "Hello",
@@ -157,3 +158,146 @@ let groupedEmps = emps.reduce((acc,emp)=>{
 },{})
 
 console.log(groupedEmps)
+
+let uUser = {
+    uId: 1,
+    uName: 'Mohsin'
+}
+Object.create(uUser)
+
+console.log(uUser)
+
+var uUsrs =
+    {
+        email :'email@gmail.com'
+    }
+
+const render = ()=>{
+    console.log('Render ',this.uUsrs.email)
+}
+render()
+
+let oddNums = [1,3,5,7]
+oddNums= oddNums.fill([11,13],0,2).flatMap(n=>{return n})
+
+console.log(oddNums)
+
+// classes / objects
+
+class A{
+    id
+    name
+    constructor(_id,_name){
+        this.id = _id
+        this.name = _name
+    }
+    sayHello(){
+        console.log(`sayHello() ${this.name}`)
+        this.name =this.name + ' World'
+    }
+    getHello(){
+        return 'getHello() '.concat(this.name);
+    }
+    static add(i,j){
+        return this.compute(i,j)
+    }
+    static compute(i,j){
+        return i * j
+    }
+    /*sorted(aa){
+        return sorted array
+    }*/
+}
+class B extends A{
+    constructor(name){
+        // call super class constructor
+        // decide whether to pass variables or not
+        super()
+        // make this available for super class
+        this.name = name
+    }
+    getHello(){
+        console.log(`B says Hello & A says ${super.getHello()}`)
+    }
+}
+
+console.log(A.add(12,2))
+
+// create instance
+let aObj = new A(1,'Hello how r u')
+aObj.sayHello()
+
+let _msg = aObj.getHello()
+console.log(_msg)
+
+let bObj = new B('Hello')
+bObj.getHello()
+
+console.log('Test ')
+
+// ECMA Class declaration
+const Employee = class {
+    firstName
+    lastName
+    constructor(fName,lName){
+        this.firstName = fName
+        this.lastName = lName
+    }
+    getEmployee(){
+        return { user: this.firstName+' '+this.lastName }
+    }
+}
+
+const empU= new Employee('John','Wick')
+console.log(empU.getEmployee())
+
+class ArithError extends Error{
+    constructor(name,message){
+        super(name,message)
+    }
+}
+// Error class
+class C {
+    calculate(i,j){
+        try {
+            if(j==0 || j==1){
+                if(j==0)
+                    throw new ArithError('Division / Zero')
+                else
+                    throw new Error('Error Occured')    
+            }
+            console.log(i/j)
+        } catch (error) {
+            if(error instanceof ArithError)
+                console.error(error) 
+            else
+                console.log(error)    
+        }
+    }
+}
+class CustomError extends Error{
+    constructor(name,message){
+        super(name,message)
+    }
+}
+// 
+bObj = new A(3,'A Again')
+console.log(bObj.getHello())
+
+let cObj = new C()
+cObj.calculate(10,1)
+
+// 
+const testAsync =async ()=>{
+    return new Promise()
+    .then((resolve)=>{
+        return resolve('Hello test async')
+    }).catch((err)=>{})
+}
+const callerTest =async ()=>{ 
+    let _msg = await testAsync()
+    console.log(_msg)
+}
+callerTest()
+
+console.log('test async() completed ')
