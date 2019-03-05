@@ -1,3 +1,4 @@
+//'use strict'
 let uMap = new Map()
 
 uMap.set('key1','Hello')
@@ -344,6 +345,130 @@ parseName.call(persons,'Call')
 // passing only a single person
 parseName.apply({name: 'Person'},['Apply'])
 
-// generating the bound function
-const parseBound = parseName.bind(persons)
-parseBound('Bound')
+const _boundParseName = parseName.bind({name: 'Bob'},['Bind'])
+setTimeout(()=>{
+    console.log('Person has been saved')
+    // calling the bound function at a chosen time after an interval
+    _boundParseName()
+},2000)
+
+/*let _fields={
+    _first : 10,
+    _next: 4
+}
+const _operations = [
+    [
+        'ADD' , '+'
+    ],
+    [
+        'DIFF', '-'
+    ]
+]
+const getOperator = (_action)=>{
+    return _operations.find(op=>{ 
+        return op[0] == _action
+    })[1]
+}
+
+function _calcP(_action){
+    return _action !=undefined ? parseInt(this._first) + getOperator(_action) + parseInt(this._next):'No Operator Specified'
+}
+
+console.log(_calcP.call(_fields,'DIFF'))
+
+*/
+
+const pUser = {
+    firstName : 'John',
+    lastName : 'The Baptist',
+    age : 18
+}
+/*Object.defineProperty(pUser,'id',{
+    value : 1,
+    writable: false
+})*/
+pUser.id = 11
+
+const prxHandler = {
+    get: (target,_field)=>{
+        if(_field == 'firstName'){
+            return target[_field] = 'Field cannot be fetched'
+        }
+            return target[_field]
+    }, // end :get 
+    set: (target,key,value)=>{
+        /*if(key == 'email'){
+            target[key] = value
+        }*/
+        if(key == 'firstName'){
+            if(value.length >= 5 && value.length <= 10 ){
+                target[key] = value
+            }else{
+                throw new Error(`FirstName should be in between 5-10 characters only`)
+            }
+        }
+        if(key == 'lastName'){
+            target[key] = value
+        }
+        if(key == 'age'){
+            if(value >= 18)
+                target[key] = value
+            else
+                throw new Error(`User seems to be juvenile, please ensure to be an adult i.e. 18+ `)
+        }
+    }, // end : set
+    defineProperty: (target,_field,descriptor)=>{
+        let propArr = Array.from(_field)
+        
+        if(propArr[0] == '_'){
+            throw new Error(`Field cannot begin with _`)
+            
+        }else{   
+            //return false 
+            return target[_field] = descriptor.value
+        }
+    }, // end: define property 
+    deleteProperty :(target,_field)=>{
+        if(_field == 'firstName'){
+            throw new Error('First name cannot be deleted')
+        }else{
+            // allow field deletion
+            delete target[_field]
+        }
+    }
+    // end : delete property 
+}
+
+
+const prxUser = new Proxy(pUser,prxHandler)
+
+console.log(prxUser.firstName)
+
+prxUser.firstName = 'Adams'
+prxUser.lastName = 'Charles'
+prxUser.age = 19
+
+pUser.id = 5767
+
+//prxUser.email = 'abc@gmail.com'
+
+Object.defineProperty(prxUser,'emailAddress',{
+    value: 'ad@gmail.com',
+    writable: true
+})
+
+//delete prxUser.firstName
+
+console.log(prxUser)
+
+// 
+console.log('FirstName :' +Reflect.get(prxUser,'firstName'))
+
+Reflect.set(prxUser,'age',25)
+Reflect.deleteProperty(prxUser,'age')
+
+// refresh the proxy object
+console.log(prxUser)
+
+
+
