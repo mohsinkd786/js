@@ -284,32 +284,3 @@ console.log(boundDetails(["Srinagar", "J & K"]))
 // pure functions
 // high order functions
 // Symbol
-
-// closure
-const outer=(msg)=>{
-    return (innerMsg)=>{
-        return msg + ' '+innerMsg
-    }
-}
-
-const _outerC = outer('Hello')
-console.log(_outerC('World'))
-
-// 
-const _calc = (first,action)=>{
-    switch(action){
-        case 'ADD':
-            return (next)=>{
-                return first + next
-            }
-        case 'DIFF':
-            return (next)=>{
-                return first - next
-            }
-    }
-}
-
-// cal calc
-const _add = _calc(10,'DIFF')
-console.log(_add(2))
-
