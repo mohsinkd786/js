@@ -212,12 +212,18 @@ const EMPActions ={
     ADD: 'ADD',
     DEL_BY_ID: 'DEL_BY_ID'
 }
+//lock the modifications
+Object.freeze(EMPActions)
+
 const EmployeeDesignation={
     Programmer: 'Programmer',
     Developer: 'Developer',
     Manager: 'Manager',
     Consultant : 'Consultant'
 }
+//lock the modifications
+Object.freeze(EmployeeDesignation)
+
 const clsrEmp = (_emps,_action)=>{
     switch(_action){
         case EMPActions.FETCH_ALL:
@@ -232,13 +238,16 @@ const clsrEmp = (_emps,_action)=>{
             }
         case EMPActions.ADD:
             return (_empObj)=>{
+                const eExists = _emps.find(e=>{ return e.id == _empObj.id})
+                if(eExists)
+                    throw new Error('User already exists')
                 _emps.push(_empObj)
-                return _emps
+                return _emps    
             }
         case EMPActions.DEL_BY_ID:
             return (_eId)=>{
-                _emps = _emps.filter(e=> {return e.id != _eId})
-                return _emps
+                clsrEmps = _emps.filter(e=> {return e.id != _eId})
+                return clsrEmps
             }
     }
 }
