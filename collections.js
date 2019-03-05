@@ -206,25 +206,36 @@ let clsrEmps = [
         designation: 'Manager'
     }
 ]
-
+const EMPActions ={
+    FETCH_ALL: 'FETCH_ALL',
+    FETCH_BY_DESIGNATION: 'FETCH_BY_DESIGNATION',
+    ADD: 'ADD',
+    DEL_BY_ID: 'DEL_BY_ID'
+}
+const EmployeeDesignation={
+    Programmer: 'Programmer',
+    Developer: 'Developer',
+    Manager: 'Manager',
+    Consultant : 'Consultant'
+}
 const clsrEmp = (_emps,_action)=>{
     switch(_action){
-        case 'FETCH_ALL':
+        case EMPActions.FETCH_ALL:
             return ()=>{
                 return _emps
             }
-        case 'FETCH_BY_DESIGNATION':
+        case EMPActions.FETCH_BY_DESIGNATION:
             return (_designation)=>{
                 return _emps.filter(e=>{
                     return e.designation == _designation
                 })
             }
-        case 'ADD':
+        case EMPActions.ADD:
             return (_empObj)=>{
                 _emps.push(_empObj)
                 return _emps
             }
-        case 'DEL_BY_ID':
+        case EMPActions.DEL_BY_ID:
             return (_eId)=>{
                 _emps = _emps.filter(e=> {return e.id != _eId})
                 return _emps
@@ -232,19 +243,19 @@ const clsrEmp = (_emps,_action)=>{
     }
 }
 
-const _clsrEmpCaller = clsrEmp(clsrEmps,'FETCH_ALL')
+const _clsrEmpCaller = clsrEmp(clsrEmps,EMPActions.FETCH_ALL)
 const _clsrInnerEmpCaller = _clsrEmpCaller()
 console.log(_clsrInnerEmpCaller)
 
-const _clsrEmpCallerByDesig = clsrEmp(clsrEmps,'FETCH_BY_DESIGNATION')
-const _clsrInnerEmpCallerByDesig = _clsrEmpCallerByDesig('Programmer')
+const _clsrEmpCallerByDesig = clsrEmp(clsrEmps,EMPActions.FETCH_BY_DESIGNATION)
+const _clsrInnerEmpCallerByDesig = _clsrEmpCallerByDesig(EmployeeDesignation.Programmer)
 console.log(_clsrInnerEmpCallerByDesig)
 
-const _clsrEmpCallerByAdd = clsrEmp(clsrEmps,'ADD')
-const _clsrInnerEmpCallerByAdd = _clsrEmpCallerByAdd({id: 5,name:'Mohsin',designation:'Consultant'})
+const _clsrEmpCallerByAdd = clsrEmp(clsrEmps,EMPActions.ADD)
+const _clsrInnerEmpCallerByAdd = _clsrEmpCallerByAdd({id: 5,name:'Mohsin',designation:EmployeeDesignation.Consultant})
 console.log(_clsrInnerEmpCallerByAdd)
 
-const _clsrEmpCallerDelById = clsrEmp(clsrEmps,'DEL_BY_ID')
+const _clsrEmpCallerDelById = clsrEmp(clsrEmps,EMPActions.DEL_BY_ID)
 const _clsrInnerEmpCallerDelById = _clsrEmpCallerDelById(1)
 console.log(_clsrInnerEmpCallerDelById)
 
