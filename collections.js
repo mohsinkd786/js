@@ -268,3 +268,82 @@ const _clsrEmpCallerDelById = clsrEmp(clsrEmps,EMPActions.DEL_BY_ID)
 const _clsrInnerEmpCallerDelById = _clsrEmpCallerDelById(1)
 console.log(_clsrInnerEmpCallerDelById)
 
+// Proxy
+
+const _target = {
+    txt: 'hello'
+}
+let _handler = {
+    get: (target,key)=>{
+        return target[key]
+    },
+    set: (target,key,value)=>{
+        target[key] = value + value
+        return true
+    }
+}
+let prxy = new Proxy(_target,_handler)
+console.log(prxy.txt)
+prxy.txt = 'Hey'
+console.log(prxy.txt)
+
+
+// object
+let _actions={
+    _operation: 'DIFF'
+}
+// function 
+function _process(_first,_next){
+    let _result=0
+    switch(this._operation){
+        case 'ADD':
+            _result = _first + _next
+            return `${this._operation} ,${_result}`
+        case 'DIFF':
+            _result = _first - _next
+            return `${this._operation} ,${_result}`
+    }
+    return 'No operation trigerred'   
+}
+
+// binding the object with the function 
+let _res = _process.call(_actions,10,2)
+
+console.log(`${_res}`)
+
+_actions._operation = 'ADD'
+
+_res = _process.apply(_actions,[10,2])
+
+console.log(`${_res}`)
+
+let persons = [
+    {
+        name: 'p1'
+    },
+    {
+        name : 'p2'
+    },
+    {
+        name : 'p3'
+    }
+]
+function parseName(_by){
+    // this shall be the persons
+    if(this instanceof Array){
+        this.forEach(p=>{
+            console.log(`${_by} Name :  ${p.name}`)
+        })
+    }else{
+        console.log(`${_by} Name is ${this.name}`)
+    }
+}
+// passing array of persons
+parseName.call(persons,'Call')
+
+// passing only a single person
+parseName.apply({name: 'Person'},['Apply'])
+
+// generating the bound function
+const parseBound = parseName.bind(persons)
+parseBound('Bound')
