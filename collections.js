@@ -215,9 +215,19 @@ const clsrEmp = (_emps,_action)=>{
             }
         case 'FETCH_BY_DESIGNATION':
             return (_designation)=>{
-                return emps.filter(e=>{
+                return _emps.filter(e=>{
                     return e.designation == _designation
                 })
+            }
+        case 'ADD':
+            return (_empObj)=>{
+                _emps.push(_empObj)
+                return _emps
+            }
+        case 'DEL_BY_ID':
+            return (_eId)=>{
+                _emps = _emps.filter(e=> {return e.id != _eId})
+                return _emps
             }
     }
 }
@@ -229,4 +239,12 @@ console.log(_clsrInnerEmpCaller)
 const _clsrEmpCallerByDesig = clsrEmp(clsrEmps,'FETCH_BY_DESIGNATION')
 const _clsrInnerEmpCallerByDesig = _clsrEmpCallerByDesig('Programmer')
 console.log(_clsrInnerEmpCallerByDesig)
+
+const _clsrEmpCallerByAdd = clsrEmp(clsrEmps,'ADD')
+const _clsrInnerEmpCallerByAdd = _clsrEmpCallerByAdd({id: 5,name:'Mohsin',designation:'Consultant'})
+console.log(_clsrInnerEmpCallerByAdd)
+
+const _clsrEmpCallerDelById = clsrEmp(clsrEmps,'DEL_BY_ID')
+const _clsrInnerEmpCallerDelById = _clsrEmpCallerDelById(1)
+console.log(_clsrInnerEmpCallerDelById)
 
