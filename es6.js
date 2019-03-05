@@ -1,4 +1,4 @@
-'use strict'
+//'use strict'
 let textData = [
             [
                 "Hello",
@@ -31,49 +31,6 @@ console.log('Splice')
 newNums = nums.splice(0,2,[16,6,8,9])
 
 console.log(nums.flatMap(n=>{return n}))
-/*[
-    [
-        {
-            id: 0,
-            name: '',
-            salary: 1
-        },
-        {
-            id: 0,
-            name: '',
-            salary: 2
-        },
-        {
-            id: 0,
-            name: '',
-            salary: 1
-        },
-        {
-            id: 0,
-            name: ''
-        }
-    ],
-    [
-        {
-            id: 0,
-            name: '',
-            salary: 1.5,
-            address:{
-                city: '',
-                street: ''
-            }
-        },
-        {
-            id: 0,
-            name: '',
-            salary: 1.5,
-            address:{
-                city: '',
-                street: ''
-            }
-        }
-    ]
-]*/
 
 const usrObj = {
     id: 0,
@@ -99,7 +56,6 @@ let usrs=[
     }
 ]
 
-
 let groupByCity = usrs.reduceRight((accumulator,user)=>{
     let key = user['city'] 
     if(!accumulator[key]){
@@ -112,6 +68,7 @@ console.log(groupByCity)
 
 
 const evenNos = [2,4,6,8,10]
+
 let result = evenNos.reduce((accumulator,num)=>{
     return accumulator + num
 })
@@ -208,6 +165,7 @@ class A{
         return sorted array
     }*/
 }
+
 class B extends A{
     constructor(name){
         // call super class constructor
@@ -306,3 +264,52 @@ const callerTest =()=>{
 callerTest()
 
 console.log('test async() completed ')
+
+let uDetails = function(city, state) {
+    return this.name + " " + this.email + "," + city + "," + state;
+}
+
+let _usr = {
+    name : "Mohsin",
+    email : "mohsinkd786@gmail.com",
+}
+console.log(uDetails.call(_usr, "Srinagar", "J & K"))
+console.log(uDetails.apply(_usr, ["Srinagar", "J & K"]))
+
+boundDetails =  uDetails.bind(_usr)
+
+console.log(boundDetails(["Srinagar", "J & K"]))
+
+// functional programming
+// pure functions
+// high order functions
+// Symbol
+
+// closure
+const outer=(msg)=>{
+    return (innerMsg)=>{
+        return msg + ' '+innerMsg
+    }
+}
+
+const _outerC = outer('Hello')
+console.log(_outerC('World'))
+
+// 
+const _calc = (first,action)=>{
+    switch(action){
+        case 'ADD':
+            return (next)=>{
+                return first + next
+            }
+        case 'DIFF':
+            return (next)=>{
+                return first - next
+            }
+    }
+}
+
+// cal calc
+const _add = _calc(10,'DIFF')
+console.log(_add(2))
+
